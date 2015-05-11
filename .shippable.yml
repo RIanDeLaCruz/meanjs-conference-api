@@ -1,8 +1,26 @@
-language: node_jsnode_js:
-- "0.10"
-env:
-- NODE_ENV=travis
+# Language setting
+language: node_js
+
+# Version number
+node_js:
+  - 0.10.25
+
+# Mongo binds to 127.0.0.1 by default
 services:
-- mongodb
+  - mongodb
+
+# The path for Xunit to output test reports
+env:
+  - XUNIT_FILE=shippable/testresults/result.xml
+
+# Create directories for test and coverage reports
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+# Running the tests with grunt
+script:
+  - grunt
+
 after_success:
 - git push git@heroku.com:meanjs-conference-api.git master
