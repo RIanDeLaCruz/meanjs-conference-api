@@ -20,7 +20,7 @@ before_script:
 
 # Running the tests with grunt
 script:
-  - grunt
+  - grunt build
 
 after_success:
 - git push git@heroku.com:meanjs-conference-api.git master
